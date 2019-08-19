@@ -46,8 +46,9 @@ def main():
     used_color = []
     task = 0
     freq = 100
-    length = 0
+    length = 68400
 
+    """
     # fixed 1 hour length
     while task < 15:
         color = random.choice(COLORS)
@@ -75,14 +76,16 @@ def main():
             freq += 100
             length += 3600
             task += 1
+    """
 
     while length < 86400:
         color = random.choice(COLORS)
         freq = random.randint(100, 5000)
         dur = random.choice(DURATIONS)
         time = str(datetime.timedelta(seconds=dur))
+        print(time)
         h, m, s = time.split(':')
-        postfix = '{:02d}-{:02d}-{:02d}'.format(h, m, s)
+        postfix = '{:02d}-{:02d}-{:02d}'.format(int(h), int(m), int(s))
 
         cmd = [
             'ffmpeg', '-f', 'lavfi', '-i',
