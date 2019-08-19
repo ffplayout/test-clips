@@ -65,7 +65,7 @@ def main():
                     "'%{pts\\:gmtime\\:0\\:%T}:fontsize=46':"
                     "x=(main_w/2-text_w/2):y=(main_h/2-text_h/2):"
                     "box=1:boxcolor=black"), '-aspect', '16:9',
-                '-pix_fmt', 'yuv420p',
+                '-pix_fmt', 'yuv420p', '-preset', 'veryfast',
                 '-t', '3600', '-c:v', 'libx265', '-c:a', 'libfdk_aac',
                 '-profile:a', 'aac_he_v2', '-ac', '2', '-ar', '44100',
                 '-b:a', '16k', '{}_01-00-00.mp4'.format(color)]
@@ -74,13 +74,14 @@ def main():
 
             freq += 100
             length += 3600
+            task += 1
 
     while length < 86400:
         color = random.choice(COLORS)
         freq = random.randint(100, 5000)
         dur = random.choice(DURATIONS)
         time = str(datetime.timedelta(seconds=dur))
-        (h, m, s) = time.split(':')
+        h, m, s = time.split(':')
         postfix = '{:02d}-{:02d}-{:02d}'.format(h, m, s)
 
         cmd = [
@@ -93,7 +94,7 @@ def main():
                 "'%{pts\\:gmtime\\:0\\:%T}:fontsize=46':"
                 "x=(main_w/2-text_w/2):y=(main_h/2-text_h/2):"
                 "box=1:boxcolor=black"), '-aspect', '16:9',
-            '-pix_fmt', 'yuv420p',
+            '-pix_fmt', 'yuv420p',  '-preset', 'veryfast',
             '-t', '{}'.format(dur), '-c:v', 'libx265', '-c:a', 'libfdk_aac',
             '-profile:a', 'aac_he_v2', '-ac', '2', '-ar', '44100',
             '-b:a', '16k', '{}_{}.mp4'.format(color, postfix)]
