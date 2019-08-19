@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import datetime
 import random
-import os
 
-from subprocess import Popen, check_output
+from subprocess import check_output
+
 
 COLORS = ['AliceBlue', 'AntiqueWhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige',
           'Bisque', 'Black', 'BlanchedAlmond', 'Blue', 'BlueViolet', 'Brown',
@@ -37,12 +38,18 @@ COLORS = ['AliceBlue', 'AntiqueWhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige',
           'YellowGreen']
 
 
+DURATIONS = [10, 5, 15, 20, 30, 60, 3, 25, 45, 50, 120, 100, 1800, 900, 1200,
+             2400, 500, 700, 3600]
+
+
 def main():
     used_color = []
     task = 0
     freq = 100
+    length = 0
 
-    while task < 21:
+    # fixed 1 hour length
+    while task < 15:
         color = random.choice(COLORS)
 
         if color not in used_color:
@@ -53,9 +60,11 @@ def main():
                 'color=c={}:s=1024x576:d=3600:r=25'.format(color),
                 '-f', 'lavfi', '-i',
                 'sine=frequency={}:duration=3600'.format(freq),
-                '-vf', ("drawtext=fontfile=FreeSerif.ttf:fontcolor=white:text="
-                "'%{pts\:gmtime\:0\:%T}:fontsize=46':x=(main_w/2-text_w/2):y="
-                "(main_h/2-text_h/2):box=1:boxcolor=black"), '-aspect', '16:9',
+                '-vf', (
+                    "drawtext=fontfile=FreeSerif.ttf:fontcolor=white:text="
+                    "'%{pts\\:gmtime\\:0\\:%T}:fontsize=46':"
+                    "x=(main_w/2-text_w/2):y=(main_h/2-text_h/2):"
+                    "box=1:boxcolor=black"), '-aspect', '16:9',
                 '-pix_fmt', 'yuv420p',
                 '-t', '3600', '-c:v', 'libx265', '-c:a', 'libfdk_aac',
                 '-profile:a', 'aac_he_v2', '-ac', '2', '-ar', '44100',
@@ -64,6 +73,35 @@ def main():
             check_output(cmd)
 
             freq += 100
+            length += 3600
+
+    while length < 86400:
+        color = random.choice(COLORS)
+        freq = random.randint(100, 5000)
+        dur = random.choice(DURATIONS)
+        time = str(datetime.timedelta(seconds=dur))
+        (h, m, s) = time.split(':')
+        postfix = '{:02d}-{:02d}-{:02d}'.format(h, m, s)
+
+        cmd = [
+            'ffmpeg', '-f', 'lavfi', '-i',
+            'color=c={}:s=1024x576:d={}:r=25'.format(color, dur),
+            '-f', 'lavfi', '-i',
+            'sine=frequency={}:duration={}'.format(freq, dur),
+            '-vf', (
+                "drawtext=fontfile=FreeSerif.ttf:fontcolor=white:text="
+                "'%{pts\\:gmtime\\:0\\:%T}:fontsize=46':"
+                "x=(main_w/2-text_w/2):y=(main_h/2-text_h/2):"
+                "box=1:boxcolor=black"), '-aspect', '16:9',
+            '-pix_fmt', 'yuv420p',
+            '-t', '{}'.format(dur), '-c:v', 'libx265', '-c:a', 'libfdk_aac',
+            '-profile:a', 'aac_he_v2', '-ac', '2', '-ar', '44100',
+            '-b:a', '16k', '{}_{}.mp4'.format(color, postfix)]
+
+        check_output(cmd)
+
+        length += dur
+
 
 if __name__ == '__main__':
     main()
