@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import datetime
+import glob
+import json
+import os
 import random
-
 from subprocess import check_output
-
 
 COLORS = ['AliceBlue', 'AntiqueWhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige',
           'Bisque', 'Black', 'BlanchedAlmond', 'Blue', 'BlueViolet', 'Brown',
@@ -39,72 +40,95 @@ COLORS = ['AliceBlue', 'AntiqueWhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige',
 
 
 DURATIONS = [10, 5, 15, 20, 30, 60, 3, 25, 45, 50, 120, 100, 1800, 900, 1200,
-             2400, 500, 700, 3600]
+             2400, 500, 700, 3600, 5400, 7200]
 
 
 def main():
-    used_color = []
-    task = 0
     freq = 100
-    length = 68400
+    length = 0
+    today = datetime.datetime.now().strftime("%Y-%m-%d")
 
-    """
-    # fixed 1 hour length
-    while task < 15:
-        color = random.choice(COLORS)
+    playlist = {
+        "channel": "Test 1",
+        "date": today,
+        "program": []
+    }
 
-        if color not in used_color:
-            used_color.append(color)
+    path = os.path.dirname(os.path.realpath(__file__))
 
-            cmd = [
-                'ffmpeg', '-f', 'lavfi', '-i',
-                'color=c={}:s=1024x576:d=3600:r=25'.format(color),
-                '-f', 'lavfi', '-i',
-                'sine=frequency={}:duration=3600'.format(freq),
-                '-vf', (
-                    "drawtext=fontfile=FreeSerif.ttf:fontcolor=white:text="
-                    "'%{pts\\:gmtime\\:0\\:%T}:fontsize=46':"
-                    "x=(main_w/2-text_w/2):y=(main_h/2-text_h/2):"
-                    "box=1:boxcolor=black"), '-aspect', '16:9',
-                '-pix_fmt', 'yuv420p', '-preset', 'veryfast',
-                '-t', '3600', '-c:v', 'libx265', '-c:a', 'libfdk_aac',
-                '-profile:a', 'aac_he_v2', '-ac', '2', '-ar', '44100',
-                '-b:a', '16k', '{}_01-00-00.mp4'.format(color)]
+    for clip in glob.glob(os.path.join(path, '**', '*.mp4'), recursive=True):
+        dur_cmd = [
+                'ffprobe', '-v', 'error', '-show_entries', 'format=duration',
+                '-of', 'default=noprint_wrappers=1:nokey=1', clip]
 
-            check_output(cmd)
+        duration = float(check_output(dur_cmd).decode('utf-8'))
 
-            freq += 100
-            length += 3600
-            task += 1
-    """
+        playlist['program'].append({
+                "begin": str(datetime.timedelta(seconds=length)),
+                "in": 0,
+                "out": duration,
+                "duration": duration,
+                "source": clip
+            })
+        length += duration
 
     while length < 86400:
         color = random.choice(COLORS)
         freq = random.randint(100, 5000)
         dur = random.choice(DURATIONS)
         time = str(datetime.timedelta(seconds=dur))
-        print(time)
+
         h, m, s = time.split(':')
         postfix = '{:02d}-{:02d}-{:02d}'.format(int(h), int(m), int(s))
 
+        print(79 * '-',
+              ('\nCreate Clip with: "{}" color, '
+               '"{}hz" and "{}" length\n').format(color, freq, time),
+              79 * '-')
+
         cmd = [
-            'ffmpeg', '-f', 'lavfi', '-i',
+            'ffmpeg', '-hide_banner', '-f', 'lavfi', '-i',
             'color=c={}:s=1024x576:d={}:r=25'.format(color, dur),
             '-f', 'lavfi', '-i',
             'sine=frequency={}:duration={}'.format(freq, dur),
             '-vf', (
                 "drawtext=fontfile=FreeSerif.ttf:fontcolor=white:text="
-                "'%{pts\\:gmtime\\:0\\:%T}:fontsize=46':"
+                "'%{pts\\:gmtime\\:0\\:%T}:fontsize=46':boxborderw=6:"
                 "x=(main_w/2-text_w/2):y=(main_h/2-text_h/2):"
-                "box=1:boxcolor=black"), '-aspect', '16:9',
-            '-pix_fmt', 'yuv420p',  '-preset', 'veryfast',
-            '-t', '{}'.format(dur), '-c:v', 'libx265', '-c:a', 'libfdk_aac',
+                "box=1:boxcolor=black,drawtext=fontcolor=white:"
+                "text='Length\\: 00\\:00\\:30:fontsize=18':boxborderw=6:"
+                "x=(main_w/2-text_w/2):y=(h-line_h)*0.9:box=1:boxcolor=black"),
+            '-aspect', '16:9', '-pix_fmt', 'yuv420p',
+            '-t', '{}'.format(dur), '-c:v', 'libx265',  '-preset', 'veryfast',
+            '-tag:v', 'hvc1', '-c:a', 'libfdk_aac',
             '-profile:a', 'aac_he_v2', '-ac', '2', '-ar', '44100',
             '-b:a', '16k', '{}_{}.mp4'.format(color, postfix)]
 
         check_output(cmd)
 
-        length += dur
+        dur_cmd = [
+                'ffprobe', '-v', 'error', '-show_entries', 'format=duration',
+                '-of', 'default=noprint_wrappers=1:nokey=1',
+                '{}_{}.mp4'.format(color, postfix)]
+
+        duration = float(check_output(dur_cmd).decode('utf-8'))
+
+        playlist['program'].append({
+                "begin": str(datetime.timedelta(seconds=length)),
+                "in": 0,
+                "out": duration,
+                "duration": duration,
+                "source": os.path.join(
+                    path, '{}_{}.mp4'.format(color, postfix))
+            })
+        length += duration
+
+        print(playlist)
+        exit()
+
+    with open(os.path.join(path, 'playlist.json'),
+              'w', encoding='utf-8') as f:
+        json.dump(playlist, f, ensure_ascii=False, indent=4)
 
 
 if __name__ == '__main__':
