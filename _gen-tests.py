@@ -47,30 +47,13 @@ def main():
     freq = 100
     length = 0
     today = datetime.datetime.now().strftime("%Y-%m-%d")
+    path = os.path.dirname(os.path.realpath(__file__))
 
     playlist = {
         "channel": "Test 1",
         "date": today,
         "program": []
     }
-
-    path = os.path.dirname(os.path.realpath(__file__))
-
-    for clip in glob.glob(os.path.join(path, '**', '*.mp4'), recursive=True):
-        dur_cmd = [
-                'ffprobe', '-v', 'error', '-show_entries', 'format=duration',
-                '-of', 'default=noprint_wrappers=1:nokey=1', clip]
-
-        duration = float(check_output(dur_cmd).decode('utf-8'))
-
-        playlist['program'].append({
-                "begin": str(datetime.timedelta(seconds=length)),
-                "in": 0,
-                "out": duration,
-                "duration": duration,
-                "source": clip
-            })
-        length += duration
 
     while length < 86400:
         color = random.choice(COLORS)
@@ -80,6 +63,10 @@ def main():
 
         h, m, s = time.split(':')
         postfix = '{:02d}-{:02d}-{:02d}'.format(int(h), int(m), int(s))
+
+        if os.path.isfile(os.path.join(path, '{}_{}.mp4'.format(color,
+                                                                postfix))):
+            continue
 
         print(79 * '-',
               ('\nCreate Clip with: "{}" color, '
@@ -93,8 +80,8 @@ def main():
             'sine=frequency={}:duration={}'.format(freq, dur),
             '-vf', (
                 "drawtext=fontfile=FreeSerif.ttf:fontcolor=white:text="
-                "'%{pts\\:gmtime\\:0\\:%T}:fontsize=46':boxborderw=6:"
-                "x=(main_w/2-text_w/2):y=(main_h/2-text_h/2):"
+                "'%{pts\\:gmtime\\:0\\:%H\\\\\:%M\\\\\:%S}:fontsize=46':"
+                "boxborderw=6:x=(main_w/2-text_w/2):y=(main_h/2-text_h/2):"
                 "box=1:boxcolor=black,drawtext=fontcolor=white:"
                 "text='Length\\: " + time.replace(':', '\\:')
                 + ":fontsize=18':boxborderw=6:x=(main_w/2-text_w/2):"
