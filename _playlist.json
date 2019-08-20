@@ -1,0 +1,419 @@
+{
+    "channel": "Test 1",
+    "date": "2019-08-20",
+    "program": [
+        {
+            "begin": "0:00:00",
+            "in": 0,
+            "out": 3600.162,
+            "duration": 3600.162,
+            "source": "C:\\_Tools\\test-clips\\AliceBlue_01-00-00.mp4"
+        },
+        {
+            "begin": "1:00:00.162000",
+            "in": 0,
+            "out": 1200.162,
+            "duration": 1200.162,
+            "source": "C:\\_Tools\\test-clips\\Green_00-20-00.mp4"
+        },
+        {
+            "begin": "1:20:00.324000",
+            "in": 0,
+            "out": 900.162,
+            "duration": 900.162,
+            "source": "C:\\_Tools\\test-clips\\LightCoral_00-15-00.mp4"
+        },
+        {
+            "begin": "1:35:00.486000",
+            "in": 0,
+            "out": 3600.162,
+            "duration": 3600.162,
+            "source": "C:\\_Tools\\test-clips\\DarkRed_01-00-00.mp4"
+        },
+        {
+            "begin": "2:35:00.648000",
+            "in": 0,
+            "out": 15.162,
+            "duration": 15.162,
+            "source": "C:\\_Tools\\test-clips\\Peru_00-00-15.mp4"
+        },
+        {
+            "begin": "2:35:15.810000",
+            "in": 0,
+            "out": 120.162,
+            "duration": 120.162,
+            "source": "C:\\_Tools\\test-clips\\Orchid_00-02-00.mp4"
+        },
+        {
+            "begin": "2:37:15.972000",
+            "in": 0,
+            "out": 3.162,
+            "duration": 3.162,
+            "source": "C:\\_Tools\\test-clips\\SlateGray_00-00-03.mp4"
+        },
+        {
+            "begin": "2:37:19.134000",
+            "in": 0,
+            "out": 500.162,
+            "duration": 500.162,
+            "source": "C:\\_Tools\\test-clips\\DarkSlateBlue_00-08-20.mp4"
+        },
+        {
+            "begin": "2:45:39.296000",
+            "in": 0,
+            "out": 5100.162,
+            "duration": 5100.162,
+            "source": "C:\\_Tools\\test-clips\\PaleVioletRed_01-25-00.mp4"
+        },
+        {
+            "begin": "4:10:39.458000",
+            "in": 0,
+            "out": 5100.162,
+            "duration": 5100.162,
+            "source": "C:\\_Tools\\test-clips\\DarkMagenta_01-25-00.mp4"
+        },
+        {
+            "begin": "5:35:39.620000",
+            "in": 0,
+            "out": 1200.162,
+            "duration": 1200.162,
+            "source": "C:\\_Tools\\test-clips\\Khaki_00-20-00.mp4"
+        },
+        {
+            "begin": "5:55:39.782000",
+            "in": 0,
+            "out": 20.162,
+            "duration": 20.162,
+            "source": "C:\\_Tools\\test-clips\\SeaGreen_00-00-20.mp4"
+        },
+        {
+            "begin": "5:55:59.944000",
+            "in": 0,
+            "out": 500.162,
+            "duration": 500.162,
+            "source": "C:\\_Tools\\test-clips\\MediumAquaMarine_00-08-20.mp4"
+        },
+        {
+            "begin": "6:04:20.106000",
+            "in": 0,
+            "out": 1800.162,
+            "duration": 1800.162,
+            "source": "C:\\_Tools\\test-clips\\Snow_00-30-00.mp4"
+        },
+        {
+            "begin": "6:34:20.268000",
+            "in": 0,
+            "out": 15.162,
+            "duration": 15.162,
+            "source": "C:\\_Tools\\test-clips\\OrangeRed_00-00-15.mp4"
+        },
+        {
+            "begin": "6:34:35.430000",
+            "in": 0,
+            "out": 15.162,
+            "duration": 15.162,
+            "source": "C:\\_Tools\\test-clips\\MediumAquaMarine_00-00-15.mp4"
+        },
+        {
+            "begin": "6:34:50.592000",
+            "in": 0,
+            "out": 4500.162,
+            "duration": 4500.162,
+            "source": "C:\\_Tools\\test-clips\\LightCyan_01-15-00.mp4"
+        },
+        {
+            "begin": "7:49:50.754000",
+            "in": 0,
+            "out": 4500.162,
+            "duration": 4500.162,
+            "source": "C:\\_Tools\\test-clips\\LightGreen_01-15-00.mp4"
+        },
+        {
+            "begin": "9:04:50.916000",
+            "in": 0,
+            "out": 3600.162,
+            "duration": 3600.162,
+            "source": "C:\\_Tools\\test-clips\\LightSteelBlue_01-00-00.mp4"
+        },
+        {
+            "begin": "10:04:51.078000",
+            "in": 0,
+            "out": 60.162,
+            "duration": 60.162,
+            "source": "C:\\_Tools\\test-clips\\Olive_00-01-00.mp4"
+        },
+        {
+            "begin": "10:05:51.240000",
+            "in": 0,
+            "out": 500.162,
+            "duration": 500.162,
+            "source": "C:\\_Tools\\test-clips\\GoldenRod_00-08-20.mp4"
+        },
+        {
+            "begin": "10:14:11.402000",
+            "in": 0,
+            "out": 15.162,
+            "duration": 15.162,
+            "source": "C:\\_Tools\\test-clips\\SlateBlue_00-00-15.mp4"
+        },
+        {
+            "begin": "10:14:26.564000",
+            "in": 0,
+            "out": 30.162,
+            "duration": 30.162,
+            "source": "C:\\_Tools\\test-clips\\SandyBrown_00-00-30.mp4"
+        },
+        {
+            "begin": "10:14:56.726000",
+            "in": 0,
+            "out": 700.162,
+            "duration": 700.162,
+            "source": "C:\\_Tools\\test-clips\\PowderBlue_00-11-40.mp4"
+        },
+        {
+            "begin": "10:26:36.888000",
+            "in": 0,
+            "out": 4500.162,
+            "duration": 4500.162,
+            "source": "C:\\_Tools\\test-clips\\HoneyDew_01-15-00.mp4"
+        },
+        {
+            "begin": "11:41:37.050000",
+            "in": 0,
+            "out": 30.162,
+            "duration": 30.162,
+            "source": "C:\\_Tools\\test-clips\\LawnGreen_00-00-30.mp4"
+        },
+        {
+            "begin": "11:42:07.212000",
+            "in": 0,
+            "out": 700.162,
+            "duration": 700.162,
+            "source": "C:\\_Tools\\test-clips\\MediumBlue_00-11-40.mp4"
+        },
+        {
+            "begin": "11:53:47.374000",
+            "in": 0,
+            "out": 4500.162,
+            "duration": 4500.162,
+            "source": "C:\\_Tools\\test-clips\\LavenderBlush_01-15-00.mp4"
+        },
+        {
+            "begin": "13:08:47.536000",
+            "in": 0,
+            "out": 60.162,
+            "duration": 60.162,
+            "source": "C:\\_Tools\\test-clips\\DarkSlateBlue_00-01-00.mp4"
+        },
+        {
+            "begin": "13:09:47.698000",
+            "in": 0,
+            "out": 20.162,
+            "duration": 20.162,
+            "source": "C:\\_Tools\\test-clips\\MediumVioletRed_00-00-20.mp4"
+        },
+        {
+            "begin": "13:10:07.860000",
+            "in": 0,
+            "out": 900.162,
+            "duration": 900.162,
+            "source": "C:\\_Tools\\test-clips\\PeachPuff_00-15-00.mp4"
+        },
+        {
+            "begin": "13:25:08.022000",
+            "in": 0,
+            "out": 5100.162,
+            "duration": 5100.162,
+            "source": "C:\\_Tools\\test-clips\\DarkSlateBlue_01-25-00.mp4"
+        },
+        {
+            "begin": "14:50:08.184000",
+            "in": 0,
+            "out": 15.162,
+            "duration": 15.162,
+            "source": "C:\\_Tools\\test-clips\\SlateGray_00-00-15.mp4"
+        },
+        {
+            "begin": "14:50:23.346000",
+            "in": 0,
+            "out": 700.162,
+            "duration": 700.162,
+            "source": "C:\\_Tools\\test-clips\\GoldenRod_00-11-40.mp4"
+        },
+        {
+            "begin": "15:02:03.508000",
+            "in": 0,
+            "out": 3.162,
+            "duration": 3.162,
+            "source": "C:\\_Tools\\test-clips\\DarkKhaki_00-00-03.mp4"
+        },
+        {
+            "begin": "15:02:06.670000",
+            "in": 0,
+            "out": 500.162,
+            "duration": 500.162,
+            "source": "C:\\_Tools\\test-clips\\PeachPuff_00-08-20.mp4"
+        },
+        {
+            "begin": "15:10:26.832000",
+            "in": 0,
+            "out": 3600.162,
+            "duration": 3600.162,
+            "source": "C:\\_Tools\\test-clips\\OrangeRed_01-00-00.mp4"
+        },
+        {
+            "begin": "16:10:26.994000",
+            "in": 0,
+            "out": 2400.162,
+            "duration": 2400.162,
+            "source": "C:\\_Tools\\test-clips\\IndianRed_00-40-00.mp4"
+        },
+        {
+            "begin": "16:50:27.156000",
+            "in": 0,
+            "out": 15.162,
+            "duration": 15.162,
+            "source": "C:\\_Tools\\test-clips\\Salmon_00-00-15.mp4"
+        },
+        {
+            "begin": "16:50:42.318000",
+            "in": 0,
+            "out": 3600.162,
+            "duration": 3600.162,
+            "source": "C:\\_Tools\\test-clips\\LavenderBlush_01-00-00.mp4"
+        },
+        {
+            "begin": "17:50:42.480000",
+            "in": 0,
+            "out": 15.162,
+            "duration": 15.162,
+            "source": "C:\\_Tools\\test-clips\\LavenderBlush_00-00-15.mp4"
+        },
+        {
+            "begin": "17:50:57.642000",
+            "in": 0,
+            "out": 2400.162,
+            "duration": 2400.162,
+            "source": "C:\\_Tools\\test-clips\\LawnGreen_00-40-00.mp4"
+        },
+        {
+            "begin": "18:30:57.804000",
+            "in": 0,
+            "out": 2400.162,
+            "duration": 2400.162,
+            "source": "C:\\_Tools\\test-clips\\Chartreuse_00-40-00.mp4"
+        },
+        {
+            "begin": "19:10:57.966000",
+            "in": 0,
+            "out": 1200.162,
+            "duration": 1200.162,
+            "source": "C:\\_Tools\\test-clips\\White_00-20-00.mp4"
+        },
+        {
+            "begin": "19:30:58.128000",
+            "in": 0,
+            "out": 1200.162,
+            "duration": 1200.162,
+            "source": "C:\\_Tools\\test-clips\\DarkCyan_00-20-00.mp4"
+        },
+        {
+            "begin": "19:50:58.290000",
+            "in": 0,
+            "out": 30.162,
+            "duration": 30.162,
+            "source": "C:\\_Tools\\test-clips\\LightSteelBlue_00-00-30.mp4"
+        },
+        {
+            "begin": "19:51:28.452000",
+            "in": 0,
+            "out": 3600.162,
+            "duration": 3600.162,
+            "source": "C:\\_Tools\\test-clips\\AntiqueWhite_01-00-00.mp4"
+        },
+        {
+            "begin": "20:51:28.614000",
+            "in": 0,
+            "out": 1200.162,
+            "duration": 1200.162,
+            "source": "C:\\_Tools\\test-clips\\SpringGreen_00-20-00.mp4"
+        },
+        {
+            "begin": "21:11:28.776000",
+            "in": 0,
+            "out": 1800.162,
+            "duration": 1800.162,
+            "source": "C:\\_Tools\\test-clips\\Cyan_00-30-00.mp4"
+        },
+        {
+            "begin": "21:41:28.938000",
+            "in": 0,
+            "out": 3600.162,
+            "duration": 3600.162,
+            "source": "C:\\_Tools\\test-clips\\Navy_01-00-00.mp4"
+        },
+        {
+            "begin": "22:41:29.100000",
+            "in": 0,
+            "out": 2400.162,
+            "duration": 2400.162,
+            "source": "C:\\_Tools\\test-clips\\OrangeRed_00-40-00.mp4"
+        },
+        {
+            "begin": "23:21:29.262000",
+            "in": 0,
+            "out": 120.162,
+            "duration": 120.162,
+            "source": "C:\\_Tools\\test-clips\\Cornsilk_00-02-00.mp4"
+        },
+        {
+            "begin": "23:23:29.424000",
+            "in": 0,
+            "out": 15.162,
+            "duration": 15.162,
+            "source": "C:\\_Tools\\test-clips\\SandyBrown_00-00-15.mp4"
+        },
+        {
+            "begin": "23:23:44.586000",
+            "in": 0,
+            "out": 700.162,
+            "duration": 700.162,
+            "source": "C:\\_Tools\\test-clips\\LightPink_00-11-40.mp4"
+        },
+        {
+            "begin": "23:35:24.748000",
+            "in": 0,
+            "out": 20.162,
+            "duration": 20.162,
+            "source": "C:\\_Tools\\test-clips\\Peru_00-00-20.mp4"
+        },
+        {
+            "begin": "23:35:44.910000",
+            "in": 0,
+            "out": 500.162,
+            "duration": 500.162,
+            "source": "C:\\_Tools\\test-clips\\DarkSlateGray_00-08-20.mp4"
+        },
+        {
+            "begin": "23:44:05.072000",
+            "in": 0,
+            "out": 500.162,
+            "duration": 500.162,
+            "source": "C:\\_Tools\\test-clips\\Tomato_00-08-20.mp4"
+        },
+        {
+            "begin": "23:52:25.234000",
+            "in": 0,
+            "out": 120.162,
+            "duration": 120.162,
+            "source": "C:\\_Tools\\test-clips\\Blue_00-02-00.mp4"
+        },
+        {
+            "begin": "23:54:25.396000",
+            "in": 0,
+            "out": 5100.162,
+            "duration": 5100.162,
+            "source": "C:\\_Tools\\test-clips\\SandyBrown_01-25-00.mp4"
+        }
+    ]
+}
