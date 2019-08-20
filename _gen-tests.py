@@ -96,8 +96,13 @@ def main():
                 "'%{pts\\:gmtime\\:0\\:%T}:fontsize=46':boxborderw=6:"
                 "x=(main_w/2-text_w/2):y=(main_h/2-text_h/2):"
                 "box=1:boxcolor=black,drawtext=fontcolor=white:"
-                "text='Length\\: 00\\:00\\:30:fontsize=18':boxborderw=6:"
-                "x=(main_w/2-text_w/2):y=(h-line_h)*0.9:box=1:boxcolor=black"),
+                "text='Length\\: " + time.replace(':', '\\:')
+                + ":fontsize=18':boxborderw=6:x=(main_w/2-text_w/2):"
+                "y=(h-line_h)*0.855:box=1:boxcolor=black,"
+                "drawtext=fontcolor=white:text='Position in time\\: "
+                + str(datetime.timedelta(seconds=length)).replace(':', '\\:')
+                + ":fontsize=18':boxborderw=6:x=(main_w/2-text_w/2):"
+                "y=(h-line_h)*0.9:box=1:boxcolor=black"),
             '-aspect', '16:9', '-pix_fmt', 'yuv420p',
             '-t', '{}'.format(dur), '-c:v', 'libx265',  '-preset', 'veryfast',
             '-tag:v', 'hvc1', '-c:a', 'libfdk_aac',
