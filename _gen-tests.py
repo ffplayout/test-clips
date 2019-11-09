@@ -106,7 +106,6 @@ def main():
         duration = float(check_output(dur_cmd).decode('utf-8'))
 
         playlist['program'].append({
-                "begin": str(datetime.timedelta(seconds=length)),
                 "in": 0,
                 "out": duration,
                 "duration": duration,
