@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import datetime
-import glob
 import json
 import os
 import random
