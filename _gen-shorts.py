@@ -38,7 +38,8 @@ COLORS = ['AliceBlue', 'AntiqueWhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige',
           'YellowGreen']
 
 
-DURATIONS = [10, 5, 15, 20, 30, 3, 25, 45]
+DURATIONS_SHORT = [10, 15, 20, 30, 25, 45, 50]
+DURATIONS_LONG = [3600, 1800, 7200, 5400]
 
 
 def main():
@@ -56,13 +57,20 @@ def main():
     while length < 86400:
         color = random.choice(COLORS)
         freq = random.randint(100, 5000)
-        dur = random.choice(DURATIONS)
+
+        if length <= 1200:
+            dur = random.choice(DURATIONS_SHORT)
+        elif length < 85200:
+            dur = random.choice(DURATIONS_LONG)
+        else:
+            dur = random.choice(DURATIONS_SHORT)
+
         time = str(datetime.timedelta(seconds=dur))
 
         h, m, s = time.split(':')
         postfix = '{:02d}-{:02d}-{:02d}'.format(int(h), int(m), int(s))
 
-        if os.path.isfile(os.path.join(path, f'shorts/{color}_{postfix}.mp4')):
+        if os.path.isfile(os.path.join(path, f'test_list/{color}_{postfix}.mp4')):
             continue
 
         print(79 * '-',
@@ -87,14 +95,14 @@ def main():
             '-t', f'{dur}', '-c:v', 'libx265',  '-preset', 'veryfast',
             '-tag:v', 'hvc1', '-c:a', 'libfdk_aac',
             '-profile:a', 'aac_he_v2', '-ac', '2', '-ar', '44100',
-            '-b:a', '16k', f'shorts/{color}_{postfix}.mp4']
+            '-b:a', '16k', f'test_list/{color}_{postfix}.mp4']
 
         check_output(cmd)
 
         dur_cmd = [
                 'ffprobe', '-v', 'error', '-show_entries', 'format=duration',
                 '-of', 'default=noprint_wrappers=1:nokey=1',
-                f'shorts/{color}_{postfix}.mp4']
+                f'test_list/{color}_{postfix}.mp4']
 
         duration = float(check_output(dur_cmd).decode('utf-8'))
 
@@ -108,7 +116,7 @@ def main():
         length += duration
 
 
-    with open(os.path.join(path, 'shorts/playlist.json'),
+    with open(os.path.join(path, 'test_list/playlist.json'),
               'w', encoding='utf-8') as f:
         json.dump(playlist, f, ensure_ascii=False, indent=4)
 
