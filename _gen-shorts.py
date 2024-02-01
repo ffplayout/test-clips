@@ -38,8 +38,7 @@ COLORS = ['AliceBlue', 'AntiqueWhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige',
           'YellowGreen']
 
 
-DURATIONS = [10, 5, 15, 20, 30, 60, 3, 25, 45, 50, 120, 100, 1800, 900, 1200,
-             2400, 500, 700, 3600, 5400, 7200]
+DURATIONS = [10, 5, 15, 20, 30, 3, 25, 45]
 
 
 def main():
@@ -63,20 +62,19 @@ def main():
         h, m, s = time.split(':')
         postfix = '{:02d}-{:02d}-{:02d}'.format(int(h), int(m), int(s))
 
-        if os.path.isfile(os.path.join(path, '{}_{}.mp4'.format(color,
-                                                                postfix))):
+        if os.path.isfile(os.path.join(path, f'shorts/{color}_{postfix}.mp4')):
             continue
 
         print(79 * '-',
-              ('\nCreate Clip with: "{}" color, '
-               '"{}hz" and "{}" length\n').format(color, freq, time),
+              (f'\nCreate Clip with: "{color}" color, '
+               f'"{freq}hz" and "{time}" length\n'),
               79 * '-')
 
         cmd = [
             'ffmpeg', '-hide_banner', '-f', 'lavfi', '-i',
-            'color=c={}:s=1024x576:d={}:r=25'.format(color, dur),
+            f'color=c={color}:s=1024x576:d={dur}:r=25',
             '-f', 'lavfi', '-i',
-            'sine=frequency={}:duration={}'.format(freq, dur),
+            f'sine=frequency={freq}:duration={dur}',
             '-vf', (
                 "drawtext=fontfile=FreeSerif.ttf:fontcolor=white:text="
                 "'%{pts\\:gmtime\\:0\\:%H\\\\\:%M\\\\\:%S}:fontsize=46':"
@@ -84,23 +82,19 @@ def main():
                 "box=1:boxcolor=black,drawtext=fontcolor=white:"
                 "text='Length\\: " + time.replace(':', '\\:')
                 + ":fontsize=18':boxborderw=6:x=(main_w/2-text_w/2):"
-                "y=(h-line_h)*0.855:box=1:boxcolor=black,"
-                "drawtext=fontcolor=white:text='Position in time\\: "
-                + str(datetime.timedelta(seconds=length)).replace(':', '\\:')
-                + ":fontsize=18':boxborderw=6:x=(main_w/2-text_w/2):"
-                "y=(h-line_h)*0.9:box=1:boxcolor=black"),
+                "y=(h-line_h)*0.855:box=1:boxcolor=black"),
             '-aspect', '16:9', '-pix_fmt', 'yuv420p',
-            '-t', '{}'.format(dur), '-c:v', 'libx265',  '-preset', 'veryfast',
+            '-t', f'{dur}', '-c:v', 'libx265',  '-preset', 'veryfast',
             '-tag:v', 'hvc1', '-c:a', 'libfdk_aac',
             '-profile:a', 'aac_he_v2', '-ac', '2', '-ar', '44100',
-            '-b:a', '16k', '{}_{}.mp4'.format(color, postfix)]
+            '-b:a', '16k', f'shorts/{color}_{postfix}.mp4']
 
         check_output(cmd)
 
         dur_cmd = [
                 'ffprobe', '-v', 'error', '-show_entries', 'format=duration',
                 '-of', 'default=noprint_wrappers=1:nokey=1',
-                '{}_{}.mp4'.format(color, postfix)]
+                f'shorts/{color}_{postfix}.mp4']
 
         duration = float(check_output(dur_cmd).decode('utf-8'))
 
@@ -109,11 +103,12 @@ def main():
                 "out": duration,
                 "duration": duration,
                 "source": os.path.join(
-                    path, '{}_{}.mp4'.format(color, postfix))
+                    path, f'{color}_{postfix}.mp4')
             })
         length += duration
 
-    with open(os.path.join(path, 'playlist.json'),
+
+    with open(os.path.join(path, 'shorts/playlist.json'),
               'w', encoding='utf-8') as f:
         json.dump(playlist, f, ensure_ascii=False, indent=4)
 
