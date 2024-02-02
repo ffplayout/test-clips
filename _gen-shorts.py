@@ -60,7 +60,7 @@ def main():
 
         if length <= 1200:
             dur = random.choice(DURATIONS_SHORT)
-        elif length < 85200:
+        elif length < 84000:
             dur = random.choice(DURATIONS_LONG)
         else:
             dur = random.choice(DURATIONS_SHORT)
