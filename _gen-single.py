@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import datetime
-import json
-import os
 import random
 from subprocess import check_output
 
@@ -43,15 +41,6 @@ DURATIONS = 1500
 
 def main():
     freq = 100
-    length = 0
-    today = datetime.datetime.now().strftime("%Y-%m-%d")
-    path = os.path.dirname(os.path.realpath(__file__))
-
-    playlist = {
-        "channel": "Test 1",
-        "date": today,
-        "program": []
-    }
 
     color = random.choice(COLORS)
     dur = DURATIONS
